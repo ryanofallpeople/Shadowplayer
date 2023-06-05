@@ -12,7 +12,7 @@ Shadowplayer is a personal project application I designed to solve the problem o
 - **Simultaneous Audio Playback**: Enjoy the unique capability of playing all audio tracks in an H.264 media file simultaneously.
 
 <div style="width: 100%; text-align: center; padding-top: 20px; padding-bottom: 20px;">
-  <img src="preview.png" alt="Preview" style="width: 50%; display: inline-block;">
+  <img src="preview.png" alt="Preview" style="width: 100%; display: inline-block;">
 </div>
 
 ## Getting Started
