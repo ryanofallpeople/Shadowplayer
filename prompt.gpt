@@ -1,0 +1,68 @@
+I am creating a python GUI application for previewing video files with multiple audio tracks using the `vlc vlc --sout-all --sout #display` command to play all audio tracks simultaneously.
+
+The app will allow me to see thumbnails of each video with a play button i can click on to watch it inside of vlc.
+
+The app will have checkboxes in the corner of each thumbnail that allow the user to select one or more video files to perform a copy operation on.
+
+The program will be structured like this:
+
+# Gather metadata and create json array of video objects
+* Index all videos in the folder specified by the variable named `folder_target` and store it in an array named `raw_paths`
+* Create a json array that contains an object for each video.
+* Each video object will hold metadata such as the filepath, date modified, and video thumbnail. 
+* Also include Booleans in each video object for isWatched,  isSelected, deletionMarked
+* Populate the json array by itterating through the video files and extracting the metadata.
+
+
+# Create GUI
+* Create a gui using tkinter with dimensions of 1546x873 pixels
+* Itterate through the json array and for each video object display the thumbnail inside the tkinter window
+* Add a checkbox to the top right corner of each thumbnail and add a play button on top at 50% opacity
+* When the user clicks the play button on one of the thumbnails it should run `vlc` from the command line and pass through the file path associated with the video object.
+
+Use PIL for the thumbnails.
+
+For this response: Do not provide the implementation step by step. Respond with a single code block per `.py` file and add comments with succinct explanations. Follow up the code block with a step by step summary of how the code functions.
+
+```
+Summary of how the code functions:
+
+The code starts by importing necessary libraries and defining the folder_target variable, which specifies the folder containing the video files.
+It creates an empty JSON array named video_data to store video metadata.
+The code then iterates through all files in the folder_target directory and checks if they have supported video file extensions (e.g., ".mp4" or ".avi").
+For each video file, it retrieves the file path, date modified, and generates a thumbnail using the generate_thumbnail function (which you need to implement using PIL).
+A video object is created with the metadata and default boolean values for isWatched, isSelected, and deletionMarked, and added to the video_data array.
+After gathering all the video metadata, the code creates a GUI window using tkinter with the specified dimensions.
+It then iterates through the video_data array and performs the following actions for each video:
+Displays the thumbnail image using a tk.Label with the corresponding image.
+Adds a checkbox to the top right corner of the thumbnail using a tk.Checkbutton.
+Adds a play button on top of the thumbnail with 50% opacity using a tk.Button, and associates it with the play_video function passing the file path as an argument.
+The play_video function uses subprocess.run to execute the VLC command-line command with the selected video file path.
+Finally, the GUI window is started and
+```
+
+Implement the `generate_thumbnail` function inside of another python file in the same directory and give me the code to import it into my main app.py
+
+generate thumbnail will have to:
+* accept a path to an mp4 file as input
+* extract a still image from the first frame of the video
+* rescale it to thumbnail size
+* return the thumbnail in a form that can be stored in the json object in a compatible form that can be passed into the `ImageTk.PhotoImage()` function.
+
+
+
+
+
+
+
+
+Give me a python function snippet to convert paths that look like this:
+
+'J:/Ryans Videos/Nvidia Shadowplay/Recorded Videos/Fortnite\\Fortnite 2023.06.04 - 23.46.24.04.mp4'
+
+into a path that looks like this:
+
+"J:\Ryans Videos\Nvidia Shadowplay\Recorded Videos\Fortnite\Fortnite 2023.06.04 - 23.46.24.04.mp4"
+
+
+What do i need to change to make the thumbnails scale to fit the cell that they're in while maintaining their aspect ratio. I want the thumbnails to scale when the window dimensions change.
